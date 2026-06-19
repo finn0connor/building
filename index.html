@@ -45,6 +45,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--primary);
+            text-decoration: none;
         }
 
         nav ul {
@@ -65,6 +66,64 @@
 
         nav ul a:hover {
             color: var(--accent);
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
         }
 
         /* HERO SLIDER */
@@ -91,17 +150,13 @@
         .slide-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            background: #2a2a2a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        /* Placeholder backgrounds for images */
-        .slide:nth-child(1) <img src="image1.jpeg" style="width:100%;height:100%;object-fit:cover;"> { background: #1a2a3a; }
-        .slide:nth-child(2) .slide-image { background: #2a1a1a; }
-        .slide:nth-child(3) .slide-image { background: #1a2a1a; }
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .slide-placeholder {
             width: 100%;
@@ -114,10 +169,11 @@
             font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
+            background: #2a2a2a;
         }
 
-        /* To use real images replace .slide-placeholder with:
-           <img src="your-image.jpg" style="width:100%;height:100%;object-fit:cover;"> */
+        .slide:nth-child(2) .slide-placeholder { background: #2a1a1a; }
+        .slide:nth-child(3) .slide-placeholder { background: #1a2a1a; }
 
         .slide-overlay {
             position: absolute;
@@ -134,6 +190,7 @@
             left: 8%;
             color: var(--white);
             max-width: 550px;
+            padding-right: 1rem;
         }
 
         .slide-content h1 {
@@ -168,7 +225,6 @@
             opacity: 0.7;
         }
 
-        /* Slider controls */
         .slider-controls {
             position: absolute;
             bottom: 5%;
@@ -328,7 +384,7 @@
             color: var(--grey);
         }
 
-        /* IMAGE + TEXT SPLIT */
+        /* SPLIT SECTION */
         .split-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -346,6 +402,13 @@
             font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
+            overflow: hidden;
+        }
+
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .split-text {
@@ -392,6 +455,7 @@
             gap: 0;
             margin-bottom: 3rem;
             border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
@@ -408,6 +472,12 @@
             border-bottom: 2px solid transparent;
             margin-bottom: -1px;
             transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
         }
 
         .tab-btn.active {
@@ -415,25 +485,11 @@
             border-bottom-color: var(--accent);
         }
 
-        .tab-btn:hover {
-            color: var(--primary);
-        }
-
         .director-content {
-            display: none;
+            display: grid;
             grid-template-columns: 300px 1fr;
             gap: 5rem;
             align-items: start;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .director-content.active {
-            display: grid;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .director-image {
@@ -448,6 +504,13 @@
             font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
+            overflow: hidden;
+        }
+
+        .director-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .director-info h2 {
@@ -548,27 +611,161 @@
             color: rgba(255,255,255,0.5);
             font-size: 0.9rem;
         }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 1.2rem 1.5rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                height: 100svh;
+            }
+
+            .slide-content {
+                bottom: 15%;
+                left: 5%;
+                right: 5%;
+                max-width: 100%;
+                padding-right: 0;
+            }
+
+            .slide-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .slide-content p {
+                font-size: 0.85rem;
+            }
+
+            .slider-arrows {
+                right: 5%;
+            }
+
+            .intro-strip {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 3rem 5%;
+            }
+
+            .intro-strip h2 {
+                font-size: 1.4rem;
+            }
+
+            .what-we-do {
+                padding: 4rem 5%;
+            }
+
+            .section-heading {
+                font-size: 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                padding: 2rem 0;
+            }
+
+            .service-item:nth-child(2) {
+                padding-left: 0;
+            }
+
+            .service-item:last-child {
+                padding-left: 0;
+            }
+
+            .figures {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 3rem 5%;
+            }
+
+            .split-section {
+                grid-template-columns: 1fr;
+            }
+
+            .split-image {
+                min-height: 300px;
+            }
+
+            .split-text {
+                padding: 3rem 5%;
+            }
+
+            .directors {
+                padding: 4rem 5%;
+            }
+
+            .director-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .director-image {
+                width: 100%;
+                height: 300px;
+            }
+
+            .contact {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding: 4rem 5%;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                padding: 2rem 5%;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- NAV -->
     <nav>
-        <div class="logo">Company Name</div>
+        <a href="index.html" class="logo">Company Name</a>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">What We Do</a></li>
-            <li><a href="#directors">Directors</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#services">What We Do</a></li>
+            <li><a href="index.html#directors">Directors</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
         </ul>
+        <button class="hamburger" onclick="openMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" onclick="closeMenu()">&#215;</button>
+        <a href="index.html#about" onclick="closeMenu()">About</a>
+        <a href="index.html#services" onclick="closeMenu()">What We Do</a>
+        <a href="index.html#directors" onclick="closeMenu()">Directors</a>
+        <a href="index.html#contact" onclick="closeMenu()">Contact</a>
+    </div>
 
     <!-- HERO SLIDER -->
     <div class="hero">
 
         <div class="slide active">
             <div class="slide-image">
-                <div class="slide-placeholder">[ Insert Image 1 ]</div>
+                <img src="image1.jpeg" alt="Slide 1">
             </div>
             <div class="slide-overlay"></div>
             <div class="slide-content">
@@ -580,7 +777,7 @@
 
         <div class="slide">
             <div class="slide-image">
-                <div class="slide-placeholder">[ Insert Image 2 ]</div>
+                <div class="slide-placeholder">[ Insert image2 ]</div>
             </div>
             <div class="slide-overlay"></div>
             <div class="slide-content">
@@ -592,7 +789,7 @@
 
         <div class="slide">
             <div class="slide-image">
-                <div class="slide-placeholder">[ Insert Image 3 ]</div>
+                <div class="slide-placeholder">[ Insert image3 ]</div>
             </div>
             <div class="slide-overlay"></div>
             <div class="slide-content">
@@ -689,55 +886,19 @@
         <h2 class="section-heading">The Directors</h2>
 
         <div class="director-tabs">
-            <button class="tab-btn active" onclick="showDirector(0)">Director Name</button>
-            <button class="tab-btn" onclick="showDirector(1)">Director Name</button>
-            <button class="tab-btn" onclick="showDirector(2)">Director Name</button>
+            <a href="director1.html" class="tab-btn">Director Name</a>
+            <a href="director2.html" class="tab-btn">Director Name</a>
+            <a href="director3.html" class="tab-btn">Director Name</a>
         </div>
 
-        <!-- DIRECTOR 1 -->
-        <div class="director-content active" id="director-0">
+        <div class="director-content">
             <div class="director-image">[ Insert Photo ]</div>
             <div class="director-info">
-                <h2>Full Name</h2>
-                <div class="role">Job Title</div>
-                <div class="qualifications">Degree, Institution &nbsp;|&nbsp; Degree, Institution</div>
-                <p>
-                    Biography text for this director. Background, experience, areas of expertise 
-                    and any relevant career history. Keep this factual and concise. Two to three 
-                    paragraphs is sufficient.
-                </p>
+                <h2>Select a director above</h2>
+                <div class="role">Click a name to view their profile</div>
             </div>
         </div>
 
-        <!-- DIRECTOR 2 -->
-        <div class="director-content" id="director-1">
-            <div class="director-image">[ Insert Photo ]</div>
-            <div class="director-info">
-                <h2>Full Name</h2>
-                <div class="role">Job Title</div>
-                <div class="qualifications">Degree, Institution &nbsp;|&nbsp; Degree, Institution</div>
-                <p>
-                    Biography text for this director. Background, experience, areas of expertise 
-                    and any relevant career history. Keep this factual and concise. Two to three 
-                    paragraphs is sufficient.
-                </p>
-            </div>
-        </div>
-
-        <!-- DIRECTOR 3 -->
-        <div class="director-content" id="director-2">
-            <div class="director-image">[ Insert Photo ]</div>
-            <div class="director-info">
-                <h2>Full Name</h2>
-                <div class="role">Job Title</div>
-                <div class="qualifications">Degree, Institution &nbsp;|&nbsp; Degree, Institution</div>
-                <p>
-                    Biography text for this director. Background, experience, areas of expertise 
-                    and any relevant career history. Keep this factual and concise. Two to three 
-                    paragraphs is sufficient.
-                </p>
-            </div>
-        </div>
     </section>
 
     <!-- CONTACT -->
@@ -793,11 +954,12 @@
 
         setInterval(nextSlide, 6000);
 
-        function showDirector(index) {
-            document.querySelectorAll('.director-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById('director-' + index).classList.add('active');
-            document.querySelectorAll('.tab-btn')[index].classList.add('active');
+        function openMenu() {
+            document.getElementById('mobileMenu').classList.add('open');
+        }
+
+        function closeMenu() {
+            document.getElementById('mobileMenu').classList.remove('open');
         }
     </script>
 
